@@ -63,21 +63,24 @@ class Piece:
     def obtain_rect(self):
         return self.piece_rect
 
-    def click(self):
-        global clicked
-        action = False
 
-        pos = pygame.mouse.get_pos()
+def load_pieces_position(user_play_as):
+    global white_pieces_objs, black_pieces_objs
 
-        if self.piece_rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and clicked == False:
-                clicked = True
-                action = True
+    if user_play_as == "White":
+        sqr_pos_data = board.get_sqr_pos_data_for_white()
+    elif user_play_as == "Black":
+        sqr_pos_data = board.get_sqr_pos_data_for_black()
 
-        if pygame.mouse.get_pressed()[0] == 0:
-            clicked = False
+    for white_piece_name, sqr in white_pieces_sqr_mapping.items():
+        white_pieces_objs[white_piece_name].obtain_rect(
+        ).center = sqr_pos_data[sqr].center
 
-        return action
+    for black_piece_name, sqr in black_pieces_sqr_mapping.items():
+        black_pieces_objs[black_piece_name].obtain_rect(
+        ).center = sqr_pos_data[sqr].center
+
+    return sqr_pos_data
 
 
 board = ChessBoard()
@@ -94,52 +97,3 @@ for black_piece_name in black_pieces_names:
     black_piece.load_piece_data(
         ASSETS_DIR/f"images/pieces/{black_piece_name[:-1]}.png", 0, 0)
     black_pieces_objs[black_piece_name] = black_piece
-
-
-def load_pieces_position(user_play_as):
-    if user_play_as == "White":
-        sqr_pos_data = board.get_sqr_pos_data_for_white()
-    elif user_play_as == "Black":
-        sqr_pos_data = board.get_sqr_pos_data_for_black()
-
-    for white_piece_name, square in {
-        "wr1": "a1",
-        "wn1": "b1",
-        "wb1": "c1",
-        "wq0": "d1",
-        "wk0": "e1",
-        "wb2": "f1",
-        "wn2": "g1",
-        "wr2": "h1",
-        "wp1": "a2",
-        "wp2": "b2",
-        "wp3": "c2",
-        "wp4": "d2",
-        "wp5": "e2",
-        "wp6": "f2",
-        "wp7": "g2",
-        "wp8": "h2",
-    }.items():
-        white_pieces_objs[white_piece_name].obtain_rect(
-        ).center = sqr_pos_data[square].center
-
-    for black_piece_name, square in {
-        "br1": "a8",
-        "bn1": "b8",
-        "bb1": "c8",
-        "bq0": "d8",
-        "bk0": "e8",
-        "bb2": "f8",
-        "bn2": "g8",
-        "br2": "h8",
-        "bp1": "a7",
-        "bp2": "b7",
-        "bp3": "c7",
-        "bp4": "d7",
-        "bp5": "e7",
-        "bp6": "f7",
-        "bp7": "g7",
-        "bp8": "h7",
-    }.items():
-        black_pieces_objs[black_piece_name].obtain_rect(
-        ).center = sqr_pos_data[square].center

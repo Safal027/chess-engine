@@ -1,4 +1,4 @@
-from board import *
+from moves import *
 
 while running:
     events = pygame.event.get()
@@ -65,12 +65,27 @@ while running:
         if user_play_as == "Random":
             user_play_as = random.choice(["White", "Black"])
 
-        load_pieces_position(user_play_as)
+        if user_play_as == "White":
+            board_for_moves.turn = chess.WHITE
+
+        if user_play_as == "Black":
+            board_for_moves.turn = chess.BLACK
+
+        sqr_pos_data = load_pieces_position(user_play_as)
 
         for white_piece_name in white_pieces_names:
             white_pieces_objs[white_piece_name].draw()
         for black_piece_name in black_pieces_names:
             black_pieces_objs[black_piece_name].draw()
+
+        piece_selection_data = set_up_piece_selection_data(sqr_pos_data)
+        pos = piece_selection_data[0]
+        to_move_trigger = piece_selection_data[1]
+        move = translate_move()
+        if move is not None:
+            legal_moves = get_legal_moves()
+            move_piece(move, to_move_trigger, legal_moves)
+            capture_piece()
 
     elif current_scene == "play_player":
         prev_scene = "home"
@@ -90,10 +105,12 @@ while running:
     pygame.display.update()
     clock.tick(60)
 
-    if c % 10 == 0:
-        fps = round(clock.get_fps(), 1)
-        print(f"FPS: {fps}")
-    c += 1
+    # fps = clock.get_fps()
+    # fps_sum += fps
+    # avg_fps = fps_sum/c
+    # if c % 60 == 0:
+    #     print(f"FPS: {round(fps, 2)}    AVG_FPS: {round(avg_fps, 2)}")
+    # c += 1
 
 pygame.quit()
 sys.exit()

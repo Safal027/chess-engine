@@ -23,12 +23,12 @@ class Button:
         pos = pygame.mouse.get_pos()
 
         if self.button_rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and clicked == False:
+            if pygame.mouse.get_pressed()[0] and clicked == False:
                 click_sound_effect.play()
                 clicked = True
                 action = True
 
-        if pygame.mouse.get_pressed()[0] == 0:
+        if pygame.mouse.get_pressed()[0] is False:
             clicked = False
 
         return action
