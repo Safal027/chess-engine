@@ -3,7 +3,7 @@ from buttons import *
 
 class ChessBoard:
 
-    def draw_board(self, surface):
+    def draw_board(self, surface, remove=False):
 
         for row in range(8):
             for col in range(8):
@@ -81,6 +81,13 @@ def load_pieces_position(user_play_as):
         ).center = sqr_pos_data[sqr].center
 
     return sqr_pos_data
+
+
+def draw_all_pieces():
+    for white_piece_name in white_pieces_names:
+        white_pieces_objs[white_piece_name].draw()
+    for black_piece_name in black_pieces_names:
+        black_pieces_objs[black_piece_name].draw()
 
 
 board = ChessBoard()

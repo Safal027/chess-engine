@@ -66,3 +66,7 @@ bg = pygame.image.load(
 refined_bg_data = get_refined_image_data(bg, 1, 1, True, True, True)
 bg_img = refined_bg_data[0]
 bg_rect = refined_bg_data[1]
+
+check_color_surface = pygame.Surface((1, 1))
+check_color_surface.fill((255, 0, 0))
+check_color_surface_rect = None

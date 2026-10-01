@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Optional
 import random
 
-
 pygame.init()
 
 pygame.display.set_caption("MateX")
@@ -16,6 +15,8 @@ pygame.display.set_caption("MateX")
 current_scene = "home"
 prev_scene = None
 user_play_as = "Random"
+
+side_decided = False
 
 c = 1
 fps_sum = 0
@@ -83,6 +84,15 @@ selected_piece = None
 current_position = None
 target_sqr = None
 turn_step = 1
+
+to_do_promotion = None
+promote_to = None
+is_in_check = None
+outcome = None
+winner = None
+draw = False
+
+font = pygame.font.SysFont("Arial", 100)
 
 screen = pygame.display.set_mode(
     (screen_width, screen_height), pygame.RESIZABLE)

@@ -80,4 +80,37 @@ back_button = Button()
 back_button.load_button_data(
     ASSETS_DIR/"images/other_images/button_back.png", 0.15, 0.15, False, False, False, x_rect=20, y_rect=20)
 
+choose_wq_button = Button()
+choose_wq_button.load_button_data(
+    ASSETS_DIR/"images/other_images/wq.png", 0.10, 0.10, False, False, False, x_rect=200, y_rect=20)
+
+choose_wr_button = Button()
+choose_wr_button.load_button_data(
+    ASSETS_DIR/"images/other_images/wr.png", 0.10, 0.10, False, False, False, x_rect=280, y_rect=20)
+
+choose_wb_button = Button()
+choose_wb_button.load_button_data(
+    ASSETS_DIR/"images/other_images/wb.png", 0.10, 0.10, False, False, False, x_rect=360, y_rect=20)
+
+choose_wn_button = Button()
+choose_wn_button.load_button_data(
+    ASSETS_DIR/"images/other_images/wn.png", 0.10, 0.10, False, False, False, x_rect=440, y_rect=20)
+
+choose_bq_button = Button()
+choose_bq_button.load_button_data(
+    ASSETS_DIR/"images/other_images/bq.png", 0.10, 0.10, False, False, False, x_rect=200, y_rect=20)
+
+choose_br_button = Button()
+choose_br_button.load_button_data(
+    ASSETS_DIR/"images/other_images/br.png", 0.10, 0.10, False, False, False, x_rect=280, y_rect=20)
+
+choose_bb_button = Button()
+choose_bb_button.load_button_data(
+    ASSETS_DIR/"images/other_images/bb.png", 0.10, 0.10, False, False, False, x_rect=360, y_rect=20)
+
+choose_bn_button = Button()
+choose_bn_button.load_button_data(
+    ASSETS_DIR/"images/other_images/bn.png", 0.10, 0.10, False, False, False, x_rect=440, y_rect=20)
+
 click_sound_effect = pygame.mixer.Sound(ASSETS_DIR/"sounds/button_click.mp3")
+move_piece_sound_effect=pygame.mixer.Sound(ASSETS_DIR/"sounds/move_piece.mp3")
