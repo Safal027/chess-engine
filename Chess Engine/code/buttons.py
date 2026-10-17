@@ -50,6 +50,14 @@ play_in_pass_button = Button()
 play_in_pass_button.load_button_data(
     ASSETS_DIR/"images/other_images/button_play-in-pass.png", 0.4, 0.4, False, False, False, x_rect=400, y_rect=225)
 
+view_room_code_button = Button()
+view_room_code_button.load_button_data(
+    ASSETS_DIR/"images/other_images/button_view-your-room-code.png", 0.4, 0.4, True, False, False, y_rect=200)
+
+enter_room_code_button = Button()
+enter_room_code_button.load_button_data(
+    ASSETS_DIR/"images/other_images/button_enter-a-room-code.png", 0.4, 0.4, True, False, False, y_rect=300)
+
 slider = Slider(win=screen, x=150, y=180, width=500, height=10, min=1, max=25,
                 step=1, valueColour=(000, 000, 000), colour=(200, 200, 200), handleColour=(100, 100, 100), initial=1)
 level_output = TextBox(win=screen, x=310, y=200,
@@ -113,4 +121,5 @@ choose_bn_button.load_button_data(
     ASSETS_DIR/"images/other_images/bn.png", 0.10, 0.10, False, False, False, x_rect=440, y_rect=20)
 
 click_sound_effect = pygame.mixer.Sound(ASSETS_DIR/"sounds/button_click.mp3")
-move_piece_sound_effect=pygame.mixer.Sound(ASSETS_DIR/"sounds/move_piece.mp3")
+move_piece_sound_effect = pygame.mixer.Sound(
+    ASSETS_DIR/"sounds/move_piece.mp3")

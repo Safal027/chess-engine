@@ -122,7 +122,7 @@ def get_legal_moves():
     return legal_moves
 
 
-def move_piece(translated_move: str, to_move_trigger: bool, legal_moves: list):
+def move_piece(translated_move: str, legal_moves: list, to_move_trigger: bool, is_bot_move: Optional[bool] = False):
     if to_move_trigger:
         global selected_piece, current_position, target_sqr, turn_step
 
@@ -139,10 +139,9 @@ def move_piece(translated_move: str, to_move_trigger: bool, legal_moves: list):
                     move = chess.Move.from_uci(translated_move)
                     board_for_moves.push(move)
                     move_piece_sound_effect.play()
+                    turn_step += 1
                 except Exception:
                     pass
-
-                turn_step += 1
 
                 if len(translated_move) == 5:
                     color = selected_piece[0]
@@ -198,7 +197,7 @@ def capture_piece():
         move_piece_sound_effect.play()
 
 
-def en_passant(translated_move, legal_moves):
+def en_passant(translated_move, legal_moves, is_bot_move: Optional[bool] = False):
     global white_pieces_sqr_mapping, black_pieces_sqr_mapping, white_pieces_names, black_pieces_names, target_sqr
 
     capture_white = False
@@ -244,7 +243,7 @@ def en_passant(translated_move, legal_moves):
         pass
 
 
-def castling(translated_move, legal_moves):
+def castling(translated_move, legal_moves, is_bot_move: Optional[bool] = False):
     global white_pieces_sqr_mapping, black_pieces_sqr_mapping
 
     try:
@@ -287,15 +286,14 @@ def result():
     outcome = board_for_moves.outcome()
 
     if outcome is not None:
-        if outcome:
-            if outcome.winner == True:
-                winner = "white"
+        if outcome.winner == True:
+            winner = "white"
 
-            elif outcome.winner == False:
-                winner = "black"
+        elif outcome.winner == False:
+            winner = "black"
 
-            else:
-                winner = "draw"
+        else:
+            winner = "draw"
 
     if outcome is not None:
         if outcome:

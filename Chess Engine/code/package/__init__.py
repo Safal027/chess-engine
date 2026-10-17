@@ -1,5 +1,6 @@
 import pygame
 import chess
+import chess.engine
 import pygame_widgets
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
@@ -7,6 +8,10 @@ import sys
 from pathlib import Path
 from typing import Optional
 import random
+import urllib.request
+import json
+import string
+from ably import AblyRealtime
 
 pygame.init()
 
@@ -27,6 +32,10 @@ clicked = False
 screen_width = 800
 screen_height = 450
 ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets"
+STOCKFISH_FILE_PATH = Path(__file__).resolve(
+).parent.parent.parent/"stockfish/stockfish.exe"
+
+
 
 LIGHT_COLOR = (240, 235, 255)
 DARK_COLOR = (36, 75, 62)
@@ -91,6 +100,9 @@ is_in_check = None
 outcome = None
 winner = None
 draw = False
+
+engine_lvl_set = False
+bot_blunder_percentage = 0
 
 font = pygame.font.SysFont("Arial", 100)
 
